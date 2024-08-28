@@ -1,6 +1,13 @@
 import { useContext, useState, useEffect } from "react";
 import styles from "../styles/login.module.css";
-import { Box, Button, Center, Heading, useToast, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Heading,
+  useToast,
+  VStack,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { AuthContext } from "@/authContext/authContextProvider";
 import Head from "next/head";
@@ -61,6 +68,7 @@ export default function Login() {
       password: "",
     });
   };
+
   const logoutFunction = () => {
     setIsAuth(false);
     localStorage.removeItem("user"); // Clear user data from localStorage
@@ -71,18 +79,22 @@ export default function Login() {
 
   return (
     <>
-    <Head>
+      <Head>
         <title>Login</title>
-        <meta name="description" content="loging page" />
-    </Head>
+        <meta name="description" content="login page" />
+      </Head>
       {isAuth ? (
         <Center h="90vh">
           <VStack spacing={10}>
             <Heading as={"h4"}>
-            Welcome{" "}
-            {parsedLoginData.name ? parsedLoginData.name.toUpperCase() : "User"}
-          </Heading>
-          <Button onClick={logoutFunction} colorScheme="teal">Logout</Button>
+              Welcome{" "}
+              {typeof parsedLoginData.name === "string"
+                ? parsedLoginData.name.toUpperCase()
+                : "User"}
+            </Heading>
+            <Button onClick={logoutFunction} colorScheme="teal">
+              Logout
+            </Button>
           </VStack>
         </Center>
       ) : (
