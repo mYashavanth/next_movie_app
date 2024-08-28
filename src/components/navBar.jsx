@@ -25,7 +25,7 @@ export default function Navbar() {
     <nav className={styles.navbar}>
       <Link href="/">Home</Link>
       {!isAuth && <Link href="/signup">Sign Up</Link>}
-      <Link href="/login">{isAuth ? data.name.toUpperCase() : "Login"}</Link>
+      <Link href="/login">{isAuth && typeof data.name === "string" ? data.name.toUpperCase() : "Login"}</Link>
       {isAuth && <button onClick={logoutFunction}>Logout</button>}
     </nav>
   );

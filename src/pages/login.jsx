@@ -90,7 +90,7 @@ export default function Login() {
             <Heading as={"h4"}>
               Welcome{" "}
               {typeof parsedLoginData.name === "string"
-                ? parsedLoginData.name
+                ? parsedLoginData.name.toUpperCase()
                 : "User"}
             </Heading>
             <Button onClick={logoutFunction} colorScheme="teal">
