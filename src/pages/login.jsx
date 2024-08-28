@@ -82,6 +82,7 @@ export default function Login() {
       <Head>
         <title>Login</title>
         <meta name="description" content="login page" />
+        <link rel="icon" href="/logo.jpg" type="image/x-icon" />
       </Head>
       {isAuth ? (
         <Center h="90vh">

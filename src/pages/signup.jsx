@@ -47,6 +47,7 @@ export default function SignUp() {
       <Head>
         <title>Sign Up</title>
         <meta name="description" content="signup" />
+        <link rel="icon" href="/logo.jpg" type="image/x-icon" />
       </Head>
       <Box className={styles.signupMain}>
         <form action="" onSubmit={handleSubmit}>
@@ -75,7 +76,9 @@ export default function SignUp() {
               onChange={handleChange}
               value={user.password}
             />
-            <Button type="submit" colorScheme="teal" p={"24px"}>Sign Up</Button>
+            <Button type="submit" colorScheme="teal" p={"24px"}>
+              Sign Up
+            </Button>
           </Box>
         </form>
       </Box>
