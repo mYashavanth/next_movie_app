@@ -53,7 +53,10 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (!isAuth) {
+    let user = localStorage.getItem("user");
+    if (user) {
+      NavigateTo("/");
+    } else if (!isAuth) {
       NavigateTo("/login");
     }
   }, [isAuth]);
@@ -67,7 +70,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      ;
+
       <div className={styles.search}>
         <h3>Search: {search}</h3>
         <input

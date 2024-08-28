@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../styles/signup.module.css";
 import { Box, Button, useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 export default function SignUp() {
   const NavigatTo = useRouter().push;
@@ -43,6 +44,10 @@ export default function SignUp() {
   console.log(user);
   return (
     <>
+      <Head>
+        <title>Sign Up</title>
+        <meta name="description" content="signup" />
+      </Head>
       <Box className={styles.signupMain}>
         <form action="" onSubmit={handleSubmit}>
           <Box className={styles.signupForm}>

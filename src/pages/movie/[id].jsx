@@ -4,6 +4,7 @@ import Loading from "../../components/loading";
 import styles from "../../styles/movieDetails.module.css";
 import { AuthContext } from "@/authContext/authContextProvider";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 export default function Details() {
   const [loading, setLoadin] = useState(false);
@@ -38,6 +39,11 @@ export default function Details() {
     }
   }, [isAuth]);
   return (
+    <>
+      <Head>
+        <title>{datas.Title}</title>
+        <meta name="description" content={`movie details of ${datas.Title}`} />
+      </Head>
     <div>
       {loading ? (
         <Loading />
@@ -67,5 +73,6 @@ export default function Details() {
         </div>
       )}
     </div>
+    </>
   );
 }

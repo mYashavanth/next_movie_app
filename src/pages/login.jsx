@@ -1,8 +1,9 @@
 import { useContext, useState, useEffect } from "react";
 import styles from "../styles/login.module.css";
-import { Box, Button, useToast } from "@chakra-ui/react";
+import { Box, Button, Center, Heading, useToast, VStack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { AuthContext } from "@/authContext/authContextProvider";
+import Head from "next/head";
 
 export default function Login() {
   const { isAuth, setIsAuth } = useContext(AuthContext);
@@ -27,9 +28,6 @@ export default function Login() {
     setUser({ ...user, [name]: value });
   };
 
-  if(isAuth){
-    router.push("/");
-  }
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -51,7 +49,7 @@ export default function Login() {
     } else {
       toast({
         title: "Failed.",
-        description: "Login Failed",
+        description: "Login Failed Please Sign Up",
         status: "error",
         duration: 9000,
         isClosable: true,
@@ -63,20 +61,30 @@ export default function Login() {
       password: "",
     });
   };
+  const logoutFunction = () => {
+    setIsAuth(false);
+    localStorage.removeItem("user"); // Clear user data from localStorage
+  };
 
   console.log(user);
   console.log(isAuth);
 
   return (
     <>
+    <Head>
+        <title>Login</title>
+        <meta name="description" content="loging page" />
+    </Head>
       {isAuth ? (
-        <div>
-          <h1>
+        <Center h="90vh">
+          <VStack spacing={10}>
+            <Heading as={"h4"}>
             Welcome{" "}
             {parsedLoginData.name ? parsedLoginData.name.toUpperCase() : "User"}
-          </h1>
-          <button onClick={() => setIsAuth(false)}>Logout</button>
-        </div>
+          </Heading>
+          <Button onClick={logoutFunction} colorScheme="teal">Logout</Button>
+          </VStack>
+        </Center>
       ) : (
         <Box className={styles.signupMain}>
           <form onSubmit={handleSubmit}>
@@ -97,7 +105,9 @@ export default function Login() {
                 onChange={handleChange}
                 value={user.password}
               />
-              <Button type="submit" colorScheme="teal">Login</Button>
+              <Button type="submit" colorScheme="teal">
+                Login
+              </Button>
             </Box>
           </form>
         </Box>
