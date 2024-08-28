@@ -54,14 +54,6 @@ export default function Home() {
 
   useEffect(() => {
     if (!isAuth) {
-      // alert("Please Login to Access the Home");
-      toast({
-        title: "Failed.",
-        description: "Please Login to Access the Home",
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
       NavigateTo("/login");
     }
   }, [isAuth]);

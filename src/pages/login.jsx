@@ -27,6 +27,9 @@ export default function Login() {
     setUser({ ...user, [name]: value });
   };
 
+  if(isAuth){
+    router.push("/");
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
 
