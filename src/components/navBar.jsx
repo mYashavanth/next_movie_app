@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "../styles/navBar.module.css";
 import { AuthContext } from "@/authContext/authContextProvider";
 import Link from "next/link";
+import { Button, useColorMode } from "@chakra-ui/react";
 
 export default function Navbar() {
+  const { colorMode, toggleColorMode } = useColorMode();
   const [data, setData] = useState({});
   const { isAuth, setIsAuth } = useContext(AuthContext);
 
@@ -31,6 +33,9 @@ export default function Navbar() {
           : "Login"}
       </Link>
       {isAuth && <button onClick={logoutFunction}>Logout</button>}
+      <Button onClick={toggleColorMode}>
+        Toggle {colorMode === "light" ? "Dark" : "Light"}
+      </Button>
     </nav>
   );
 }
